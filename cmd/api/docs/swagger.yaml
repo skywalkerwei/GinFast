@@ -1,0 +1,54 @@
+basePath: /api
+info:
+  contact: {}
+  description: kyle api 文档
+  title: Kyle API
+  version: 0.0.1
+paths:
+  /auth/login:
+    post:
+      parameters:
+      - description: 手机号码
+        in: formData
+        name: mobile
+        required: true
+        type: string
+      - description: 验证码
+        in: formData
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 获取token
+      tags:
+      - Auth
+  /tool/send_code:
+    post:
+      parameters:
+      - description: mobile
+        in: formData
+        name: mobile
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 发送验证码
+      tags:
+      - 工具
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
