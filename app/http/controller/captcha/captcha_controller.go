@@ -2,11 +2,11 @@ package captcha
 
 import (
 	"bytes"
-	"github.com/dchest/captcha"
-	"github.com/gin-gonic/gin"
 	"ginfast/app/global/consts"
 	"ginfast/app/global/variable"
 	"ginfast/app/utils/response"
+	"github.com/dchest/captcha"
+	"github.com/gin-gonic/gin"
 	"net/http"
 	"path"
 	"time"

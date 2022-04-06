@@ -172,3 +172,5 @@ func (l logger) Trace(ctx context.Context, begin time.Time, fc func() (string, i
 		}
 	}
 }
+
+// Printf print forma

@@ -25,5 +25,4 @@ func (t *Tool) SendCode(c *gin.Context) {
 	} else {
 		response.Success(c, consts.CurdStatusOkMsg, consts.CurdStatusOkMsg)
 	}
-
 }

@@ -123,3 +123,5 @@ func structHasSpecialField(fieldName string, anyStructPtr interface{}) bool {
 	}
 	return false
 }
+
+//

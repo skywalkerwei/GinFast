@@ -6,7 +6,6 @@ import (
 	"ginfast/app/utils/response"
 	"ginfast/app/utils/wechat"
 	"github.com/gin-gonic/gin"
-	"github.com/qifengzhang007/goCurl"
 )
 
 type Home struct {
@@ -51,17 +50,18 @@ func (u *Home) Tt(c *gin.Context) {
 	//fmt.Println(res)
 	//fmt.Println(string(body))
 
-	cli := goCurl.CreateHttpClient()
-	resp, err := cli.Post("https://testnets-api.opensea.io/api/v1/asset/0x6b5e78f92c4894f833a6150388869d6fa2f925d4/10", goCurl.Options{
-		Headers: map[string]interface{}{
-			"Content-Type": "application/json",
-		},
-		FormParams:    map[string]interface{}{},
-		SetResCharset: "utf-8",
-		Timeout:       10,
-	})
-	fmt.Println(resp, err)
-	response.Success(c, "ok", resp)
+	//cli := goCurl.CreateHttpClient()
+	//resp, err := cli.Post("https://testnets-api.opensea.io/api/v1/asset/0x6b5e78f92c4894f833a6150388869d6fa2f925d4/10",
+	//	goCurl.Options{
+	//		Headers: map[string]interface{}{
+	//			"Content-Type": "application/json",
+	//		},
+	//		FormParams:    map[string]interface{}{},
+	//		SetResCharset: "utf-8",
+	//		Timeout:       10,
+	//	})
+	//fmt.Println(resp, err)
+	//response.Success(c, "ok", resp)
 
 	//if resp, err := cli.Get("https://testnets-api.opensea.io/api/v1/asset/0x6b5e78f92c4894f833a6150388869d6fa2f925d4/10"); err == nil {
 	//	content, err := resp.GetContents()
@@ -112,18 +112,18 @@ func (u *Home) Tt(c *gin.Context) {
 	//	fmt.Println(user)
 	//}
 
-	//newsType := context.GetString(consts.ValidatorPrefix + "newsType")
-	//page := context.GetFloat64(consts.ValidatorPrefix + "page")
-	//limit := context.GetFloat64(consts.ValidatorPrefix + "limit")
-	//userIp := context.ClientIP()
-	//
+	newsType := c.GetString(consts.ValidatorPrefix + "newsType")
+	page := c.GetFloat64(consts.ValidatorPrefix + "page")
+	limit := c.GetFloat64(consts.ValidatorPrefix + "limit")
+	userIp := c.ClientIP()
+
 	//// 这里随便模拟一条数据返回
-	//response.Success(context, "ok", gin.H{
-	//	"newsType": newsType,
-	//	"page":     page,
-	//	"limit":    limit,
-	//	"userIp":   userIp,
-	//	"title":    "门户首页公司新闻标题001",
-	//	"content":  "门户新闻内容001",
-	//})
+	response.Success(c, "ok", gin.H{
+		"newsType": newsType,
+		"page":     page,
+		"limit":    limit,
+		"userIp":   userIp,
+		"title":    "门户首页公司新闻标题001",
+		"content":  "门户新闻内容001",
+	})
 }

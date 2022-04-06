@@ -3,10 +3,10 @@ package upload_file
 import (
 	"errors"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"ginfast/app/global/my_errors"
 	"ginfast/app/global/variable"
 	"ginfast/app/utils/md5_encrypt"
+	"github.com/gin-gonic/gin"
 	"os"
 	"path"
 	"strings"
