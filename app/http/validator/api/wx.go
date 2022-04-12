@@ -21,7 +21,7 @@ func (n WxLogin) CheckParams(context *gin.Context) {
 	if extraAddBindDataContext == nil {
 		response.ErrorSystem(context, "表单验证器json化失败", "")
 	} else {
-		(&api.Home{}).Wx(extraAddBindDataContext)
+		(&api.Wx{}).Wx(extraAddBindDataContext)
 	}
 }
 
@@ -40,7 +40,7 @@ func (n WxBind) CheckParams(context *gin.Context) {
 	if extraAddBindDataContext == nil {
 		response.ErrorSystem(context, "表单验证器json化失败", "")
 	} else {
-		(&api.Home{}).Bind(extraAddBindDataContext)
+		(&api.Wx{}).Bind(extraAddBindDataContext)
 	}
 
 }

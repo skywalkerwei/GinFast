@@ -72,6 +72,18 @@ func InitApiRouter() *gin.Engine {
 		noAuth := vApi.Group("/")
 		{
 
+			noAuth.GET("eth/wallet", (&api.Eth{}).Wallet)
+			noAuth.GET("eth/tokenURI", validatorFactory.Create(consts.ValidatorPrefix+"EthTokenURI"))
+			noAuth.POST("eth/crateNft", validatorFactory.Create(consts.ValidatorPrefix+"EthCreate"))
+			noAuth.POST("eth/setTokenURI", validatorFactory.Create(consts.ValidatorPrefix+"EthSetTokenURI"))
+
+			noAuth.POST("eth/createTokenByUser", validatorFactory.Create(consts.ValidatorPrefix+"EthCreateTokenByUser"))
+			noAuth.POST("eth/transferFrom", validatorFactory.Create(consts.ValidatorPrefix+"EthTransferFrom"))
+			noAuth.POST("eth/transferFromByUser", validatorFactory.Create(consts.ValidatorPrefix+"EthTransferFromByUser"))
+			noAuth.POST("eth/transferEth", validatorFactory.Create(consts.ValidatorPrefix+"EthTransferEth"))
+
+			noAuth.GET("eth/totalSupply", (&api.Eth{}).TotalSupply)
+
 			noAuth.GET("tt", (&api.Home{}).Tt)
 			noAuth.POST("tool/send_code", validatorFactory.Create(consts.ValidatorPrefix+"SendCode"))
 			noAuth.POST("auth/login", validatorFactory.Create(consts.ValidatorPrefix+"Login"))

@@ -58,6 +58,262 @@ var doc = `{
                 }
             }
         },
+        "/eth/crateNft": {
+            "post": {
+                "tags": [
+                    "Eth"
+                ],
+                "summary": "生成NFT",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "tokenUrl",
+                        "name": "tokenUrl",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/eth/createTokenByUser": {
+            "post": {
+                "tags": [
+                    "Eth"
+                ],
+                "summary": "用户创建NFT",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "privateKey",
+                        "name": "privateKey",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "tokenUrl",
+                        "name": "tokenUrl",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/eth/setTokenURI": {
+            "post": {
+                "tags": [
+                    "Eth"
+                ],
+                "summary": "设置meta信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "tokenId",
+                        "name": "tokenId",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "tokenUrl",
+                        "name": "tokenUrl",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/eth/tokenURI": {
+            "get": {
+                "tags": [
+                    "Eth"
+                ],
+                "summary": "meta信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "tokenId",
+                        "name": "tokenId",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/eth/totalSupply": {
+            "get": {
+                "tags": [
+                    "Eth"
+                ],
+                "summary": "总数",
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/eth/transferEth": {
+            "post": {
+                "tags": [
+                    "Eth"
+                ],
+                "summary": "转移eth",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "to",
+                        "name": "toAddress",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "tokenId",
+                        "name": "amount",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/eth/transferFrom": {
+            "post": {
+                "tags": [
+                    "Eth"
+                ],
+                "summary": "转移nft",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "from",
+                        "name": "from",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "to",
+                        "name": "to",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "tokenId",
+                        "name": "tokenId",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/eth/transferFromByUser": {
+            "post": {
+                "tags": [
+                    "Eth"
+                ],
+                "summary": "用户转移nft",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "fromPrivateKey",
+                        "name": "fromPrivateKey",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "to",
+                        "name": "to",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "tokenId",
+                        "name": "tokenId",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/eth/wallet": {
+            "get": {
+                "tags": [
+                    "Eth"
+                ],
+                "summary": "生成钱包",
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/tool/send_code": {
             "post": {
                 "produces": [

@@ -22,6 +22,27 @@ func ApiRegisterValidator() {
 	key = consts.ValidatorPrefix + "Login"
 	containers.Set(key, validates_api.Login{})
 
+	key = consts.ValidatorPrefix + "EthCreate"
+	containers.Set(key, validates_api.EthCreate{})
+
+	key = consts.ValidatorPrefix + "EthTokenURI"
+	containers.Set(key, validates_api.EthTokenURI{})
+
+	key = consts.ValidatorPrefix + "EthSetTokenURI"
+	containers.Set(key, validates_api.EthSetTokenURI{})
+
+	key = consts.ValidatorPrefix + "EthCreateTokenByUser"
+	containers.Set(key, validates_api.EthCreateTokenByUser{})
+
+	key = consts.ValidatorPrefix + "EthTransferFrom"
+	containers.Set(key, validates_api.EthTransferFrom{})
+
+	key = consts.ValidatorPrefix + "EthTransferFromByUser"
+	containers.Set(key, validates_api.EthTransferFromByUser{})
+
+	key = consts.ValidatorPrefix + "EthTransferEth"
+	containers.Set(key, validates_api.EthTransferEth{})
+
 	//key = consts.ValidatorPrefix + "MRefreshToken"
 	//containers.Set(key, validates.MRefreshToken{})
 

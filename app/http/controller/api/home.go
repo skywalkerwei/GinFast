@@ -1,45 +1,40 @@
 package api
 
 import (
-	"fmt"
-	"ginfast/app/global/consts"
-	"ginfast/app/utils/response"
-	"ginfast/app/utils/wechat"
 	"github.com/gin-gonic/gin"
 )
 
 type Home struct {
 }
 
-func (u *Home) Wx(context *gin.Context) {
-
-	code := context.GetString(consts.ValidatorPrefix + "code")
-
-	session, err := wechat.Code2Session(code)
-
-	if err != nil {
-		fmt.Println("error", err, code)
-		return
-	}
-	response.Success(context, "ok", session)
-	//
-}
-
-func (u *Home) Bind(context *gin.Context) {
-
-	encryptedData := context.GetString(consts.ValidatorPrefix + "encryptedData")
-	iv := context.GetString(consts.ValidatorPrefix + "iv")
-	openID := context.GetString(consts.ValidatorPrefix + "openid")
-
-	decrypt, err := wechat.Decrypt(openID, encryptedData, iv)
-	if err != nil {
-		return
-	}
-	response.Success(context, "ok", decrypt)
-
-}
-
 func (u *Home) Tt(c *gin.Context) {
+
+	c.JSON(200, gin.H{
+		"message": "pong",
+	})
+}
+
+func (u *Home) Tt2(c *gin.Context) {
+
+	//privateKey, err := crypto.GenerateKey()
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//
+	//privateKeyBytes := crypto.FromECDSA(privateKey)
+	//fmt.Println(hexutil.Encode(privateKeyBytes)[2:]) // 0xfad9c8855b740a0b7ed4c221dbad0f33a83a49cad6b3fe8d5817ac83d38b6a19
+	//
+	//publicKey := privateKey.Public()
+	//publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+	//if !ok {
+	//	log.Fatal("cannot assert type: publicKey is not of type *ecdsa.PublicKey")
+	//}
+	//
+	//publicKeyBytes := crypto.FromECDSAPub(publicKeyECDSA)
+	//fmt.Println(hexutil.Encode(publicKeyBytes)[4:]) // 0x049a7df67f79246283fdc93af76d4f8cdd62c4886e8cd870944e817dd0b97934fdd7719d0810951e03418205868a5c1b40b192451367f28e0088dd75e15de40c05
+	//
+	//address := crypto.PubkeyToAddress(*publicKeyECDSA).Hex()
+	//fmt.Println(address) // 0x96216849c49358B10257cb55b28eA603c874b05E
 
 	//url := "https://testnets-api.opensea.io/api/v1/asset/0x6b5e78f92c4894f833a6150388869d6fa2f925d4/10"
 	//req, _ := http.NewRequest("GET", url, nil)
@@ -112,18 +107,18 @@ func (u *Home) Tt(c *gin.Context) {
 	//	fmt.Println(user)
 	//}
 
-	newsType := c.GetString(consts.ValidatorPrefix + "newsType")
-	page := c.GetFloat64(consts.ValidatorPrefix + "page")
-	limit := c.GetFloat64(consts.ValidatorPrefix + "limit")
-	userIp := c.ClientIP()
-
-	//// 这里随便模拟一条数据返回
-	response.Success(c, "ok", gin.H{
-		"newsType": newsType,
-		"page":     page,
-		"limit":    limit,
-		"userIp":   userIp,
-		"title":    "门户首页公司新闻标题001",
-		"content":  "门户新闻内容001",
-	})
+	//newsType := c.GetString(consts.ValidatorPrefix + "newsType")
+	//page := c.GetFloat64(consts.ValidatorPrefix + "page")
+	//limit := c.GetFloat64(consts.ValidatorPrefix + "limit")
+	//userIp := c.ClientIP()
+	//
+	////// 这里随便模拟一条数据返回
+	//response.Success(c, "ok", gin.H{
+	//	"newsType": newsType,
+	//	"page":     page,
+	//	"limit":    limit,
+	//	"userIp":   userIp,
+	//	"title":    "门户首页公司新闻标题001",
+	//	"content":  "门户新闻内容001",
+	//})
 }

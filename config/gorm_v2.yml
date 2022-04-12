@@ -4,12 +4,12 @@ Gormv2: # 只针对 gorm  操作数据库有效
     IsInitGolobalGormMysql: 1    # 随项目启动为gorm db初始化一个全局 variable.GormDbMysql（完全等于*gorm.Db）,正确配置数据库，该值必须设置为: 1
     SlowThreshold: 30            # 慢 SQL 阈值(sql执行时间超过此时间单位（秒），就会触发系统日志记录)
     Write:
-      Host: "127.0.0.1"
+      Host: "81.69.250.202"
       DataBase: "api"
-      Port: 3306
+      Port: 33069
       Prefix: ""
       User: "root"
-      Pass: "123456"
+      Pass: "imguo@2022"
       Charset: "utf8"
       SetMaxIdleConns: 10
       SetMaxOpenConns: 128
@@ -20,7 +20,7 @@ Gormv2: # 只针对 gorm  操作数据库有效
     Read:
       Host: "127.0.0.1"
       DataBase: "api"
-      Port: 3308                        #注意，非3306，请自行调整
+      Port: 33069   #注意，非3306，请自行调整
       Prefix: ""
       User: "root"
       Pass: "yourPassword"

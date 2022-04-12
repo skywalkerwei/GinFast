@@ -28,6 +28,173 @@ paths:
       summary: 获取token
       tags:
       - Auth
+  /eth/crateNft:
+    post:
+      parameters:
+      - description: tokenUrl
+        in: formData
+        name: tokenUrl
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 生成NFT
+      tags:
+      - Eth
+  /eth/createTokenByUser:
+    post:
+      parameters:
+      - description: privateKey
+        in: formData
+        name: privateKey
+        required: true
+        type: string
+      - description: tokenUrl
+        in: formData
+        name: tokenUrl
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 用户创建NFT
+      tags:
+      - Eth
+  /eth/setTokenURI:
+    post:
+      parameters:
+      - description: tokenId
+        in: formData
+        name: tokenId
+        required: true
+        type: string
+      - description: tokenUrl
+        in: formData
+        name: tokenUrl
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 设置meta信息
+      tags:
+      - Eth
+  /eth/tokenURI:
+    get:
+      parameters:
+      - description: tokenId
+        in: query
+        name: tokenId
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: meta信息
+      tags:
+      - Eth
+  /eth/totalSupply:
+    get:
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 总数
+      tags:
+      - Eth
+  /eth/transferEth:
+    post:
+      parameters:
+      - description: to
+        in: formData
+        name: toAddress
+        required: true
+        type: string
+      - description: tokenId
+        in: formData
+        name: amount
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 转移eth
+      tags:
+      - Eth
+  /eth/transferFrom:
+    post:
+      parameters:
+      - description: from
+        in: formData
+        name: from
+        required: true
+        type: string
+      - description: to
+        in: formData
+        name: to
+        required: true
+        type: string
+      - description: tokenId
+        in: formData
+        name: tokenId
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 转移nft
+      tags:
+      - Eth
+  /eth/transferFromByUser:
+    post:
+      parameters:
+      - description: fromPrivateKey
+        in: formData
+        name: fromPrivateKey
+        required: true
+        type: string
+      - description: to
+        in: formData
+        name: to
+        required: true
+        type: string
+      - description: tokenId
+        in: formData
+        name: tokenId
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 用户转移nft
+      tags:
+      - Eth
+  /eth/wallet:
+    get:
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 生成钱包
+      tags:
+      - Eth
   /tool/send_code:
     post:
       parameters:
