@@ -197,14 +197,14 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "to",
+                        "description": "toAddress",
                         "name": "toAddress",
                         "in": "formData",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "tokenId",
+                        "description": "amount",
                         "name": "amount",
                         "in": "formData",
                         "required": true

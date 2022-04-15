@@ -21,7 +21,7 @@ func CreateContractT() *ContractT {
 	//}
 	return &ContractT{
 		DialURL:         "https://testnet.emerald.oasis.dev",
-		ContractAddress: "0x0c41240e974be802d0521C22279BBf5b86A0B4bc",
+		ContractAddress: "0xB12845aD394832C01630960d3D9359c6ebd1e415",
 		MainPrivateKey:  "5b504c58b38904ab0695ccf187fcffb30bc8f14dd5110c17934d32c1a396ecd5",
 		ChainID:         new(big.Int).SetInt64(42261),
 	}
@@ -86,8 +86,14 @@ func (c *ContractT) Auth(privateKey string) *bind.TransactOpts {
 	return auth
 }
 
-func (c *ContractT) CreateToken(tokenUrl string) string {
-	contract := c.ConnectContract()
+func (c *ContractT) CreateToken(tokenUrl string) (string, int) {
+	client := c.Client()
+	defer client.Close()
+	//创建合约
+	contract, err := NewNftAbi(common.HexToAddress(c.ContractAddress), client)
+	if err != nil {
+		fmt.Print(err)
+	}
 	auth := c.Auth(c.MainPrivateKey)
 	tx, err := contract.CreateToken(&bind.TransactOpts{
 		From:   auth.From,
@@ -97,8 +103,30 @@ func (c *ContractT) CreateToken(tokenUrl string) string {
 	if err != nil {
 		fmt.Println("err", err)
 	}
-	fmt.Println("tx sent:", tx.Hash().Hex())
-	return tx.Hash().Hex()
+	ctx := context.Background()
+	receipt, err := bind.WaitMined(ctx, client, tx)
+	if err != nil {
+		fmt.Println("err", err)
+	}
+	json, _ := receipt.MarshalJSON()
+
+	fmt.Println("receipt", receipt, string(json))
+	tokenID := 0
+	//for _, log := range receipt.Logs {
+	//	fmt.Println("log", log)
+	//	fmt.Println("log.Topics", log.Topics)
+	for _, topic := range receipt.Logs[0].Topics {
+		fmt.Printf("topic is :%s\n", topic.String())
+		tokenID = int(topic.Big().Int64())
+	}
+	//}
+	return tx.Hash().Hex(), tokenID
+	//for i, b := range json {
+	//	fmt.Printf("%d:%d\n", i, b)
+	//}
+	//return tx.Hash().String()
+	//fmt.Printf("receipt is :%s\n", receipt.TxHash)
+	//return tx.Hash().Hex()
 }
 
 func (c *ContractT) CreateTokenByUser(privateKey string, tokenUrl string) string {
@@ -146,6 +174,22 @@ func (c *ContractT) TransferFrom(from string, to string, tokenId int64) string {
 	return tx.Hash().Hex()
 }
 
+func (c *ContractT) TransferEth(toAddress string, amount int64) string {
+	contract := c.ConnectContract()
+	auth := c.Auth(c.MainPrivateKey)
+	tx, err := contract.Eth(&bind.TransactOpts{
+		From:   auth.From,
+		Signer: auth.Signer,
+		Value:  big.NewInt(amount),
+	}, common.HexToAddress(toAddress))
+	if err != nil {
+		fmt.Println("err", err)
+		return ""
+	}
+	fmt.Println("tx sent:", tx.Hash().Hex())
+	return tx.Hash().Hex()
+}
+
 func (c *ContractT) TransferFromByUser(fromPrivateKey string, to string, tokenId int64) string {
 	contract := c.ConnectContract()
 	auth := c.Auth(fromPrivateKey)
@@ -174,7 +218,7 @@ func (c *ContractT) getBalance(address string) string {
 	return ethValue.String()
 }
 
-func (c *ContractT) TransferEth(toAddress string, amount int64) error {
+func (c *ContractT) TransferFormEth(toAddress string, amount int64) error {
 
 	client := c.Client()
 	defer client.Close()
@@ -209,12 +253,12 @@ func (c *ContractT) TransferEth(toAddress string, amount int64) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("signTx", signTx)
 
 	err = client.SendTransaction(context.Background(), signTx)
 	if err != nil {
 		return err
 	}
+	fmt.Println("signTx", err, signTx)
 
 	return nil
 }

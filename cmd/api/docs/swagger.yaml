@@ -115,12 +115,12 @@ paths:
   /eth/transferEth:
     post:
       parameters:
-      - description: to
+      - description: toAddress
         in: formData
         name: toAddress
         required: true
         type: string
-      - description: tokenId
+      - description: amount
         in: formData
         name: amount
         required: true

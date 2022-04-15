@@ -40,7 +40,11 @@ func (e *Eth) Wallet(c *gin.Context) {
 func (e *Eth) CreateNft(c *gin.Context) {
 	tokenUrl := c.GetString(consts.ValidatorPrefix + "tokenUrl")
 	nftC := nft.CreateContractT()
-	response.Success(c, "ok", nftC.CreateToken(tokenUrl))
+	hashCode, tokenID := nftC.CreateToken(tokenUrl)
+	response.Success(c, "ok", gin.H{
+		"tokenID":  tokenID,
+		"hashCode": hashCode,
+	})
 
 }
 
@@ -129,13 +133,13 @@ func (e *Eth) TransferFromByUser(c *gin.Context) {
 // TransferEth
 // @Tags Eth
 // @Summary 转移eth
-// @Param toAddress formData string true "to"
-// @Param amount formData string true "tokenId"
+// @Param toAddress formData string true "toAddress"
+// @Param amount formData string true "amount"
 // @Success 200 {string} string "{"code":200,"data":{},"msg":"ok"}"
 // @Router /eth/transferEth [Post]
 func (e *Eth) TransferEth(c *gin.Context) {
 	toAddress := c.GetString(consts.ValidatorPrefix + "toAddress")
-	amount := c.GetFloat64(consts.ValidatorPrefix + "tokenId")
+	amount := c.GetFloat64(consts.ValidatorPrefix + "amount")
 	nftC := nft.CreateContractT()
 	response.Success(c, "ok", nftC.TransferEth(toAddress, int64(amount)))
 }
