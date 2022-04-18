@@ -21,8 +21,8 @@ func CreateContractT() *ContractT {
 	//}
 	return &ContractT{
 		DialURL:         "https://testnet.emerald.oasis.dev",
-		ContractAddress: "0xB12845aD394832C01630960d3D9359c6ebd1e415",
-		MainPrivateKey:  "5b504c58b38904ab0695ccf187fcffb30bc8f14dd5110c17934d32c1a396ecd5",
+		ContractAddress: "0xA3e40647f27E7bA62D3c15Ae2813F8C69d08eF1D",
+		MainPrivateKey:  "8e760a802c70315790dedf8869da477047dfc7a3eec230d2bc46f5c6f30c69bf",
 		ChainID:         new(big.Int).SetInt64(42261),
 	}
 }
